@@ -10,8 +10,7 @@
     font-weight: normal;
     font-style: normal;
 }
-// APAPAPAPAPAPAPAPAP
-//////ZZZAZAZZAZAZAZZAZZAZ
+
 html {
     height: 100%;
     /*background: url(../images/background.jpg) no-repeat center center fixed; 
@@ -214,7 +213,6 @@ span#titre-enteteCtb{
 	font-family: "OrangeFont", Helvetica, Times New Roman;
 	color: #000000;
 	font-size : 2.7em;
-	//padding : 0.8em;
 	width : 45%;
 	display:inline;
 	float:left;
@@ -404,7 +402,7 @@ footer{
 	justify-content: center;
 }
 .footer a:hover{
-    //text-decoration : underline;
+    /*text-decoration : underline;*/
 }
 
 .footer a:not(:first-child){
@@ -413,7 +411,7 @@ footer{
 
 .footer a {
     text-decoration: none;
-   // padding:8px 50px;
+   /*padding:8px 50px;*/
     font-family: "OrangeFont", Helvetica, Times New Roman;
     color: #00ccff;
     font-weight : bold;
