@@ -205,9 +205,14 @@ class RepasController extends Zend_Controller_Action {
         if ($access == 1){
             $this->_helper->redirector('logout', 'auth', null, array('reason' => '1')); // back to login page
         }
+        $this->genereQR();
         
     }
     
+    public function genereQR(){
+        include ("../library/phpqrcode.php");
+        QRcode::png('code data text', '../library/qrTest.png');
+    }
     
     
 }
