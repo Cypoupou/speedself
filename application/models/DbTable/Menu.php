@@ -7,7 +7,7 @@
  */
 
 class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
-    protected $_name = 'Menu';  // table name in the database
+    protected $_name = 'menu';  // table name in the database
     protected $_primary = 'MenuId'; //primary key
     protected $_stockIdF = 'StockIdF'; //stock id Foreign key
     protected $_menuDate = 'MenuDate'; //date
