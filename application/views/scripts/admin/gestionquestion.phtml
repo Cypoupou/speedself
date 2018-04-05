@@ -1,0 +1,83 @@
+<?php
+$this->headScript()
+->prependFile($this->baseUrl() . '/scripts/admin/gestionQuestion.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionAdmin.css');
+?>
+
+<div class="header">
+
+<div class="titre">
+   <h1> Gestion des questions </h1>
+</div>
+
+<div class="logo">
+</div>
+
+</div>
+
+
+<div class ="contenu">
+<?php if($this->question != null )
+{ ?>
+<table id="tab">
+    <tr>
+        <th>
+        Nom de la question
+        </th>
+        <th>
+            Editer
+        </th>
+        <!-- Suppression de la possibilité de supprimer une question
+        <th>
+            Supprimer
+        </th> 
+        -->
+    </tr>
+    <?php  foreach ($this->question as $question) { ?>
+    <tr>
+        <td>
+          <?php  echo $question['name']; ?>
+        </td>
+        <td> 
+         <form id='editQuestionGetIdForm' method='post'
+        action='<?php echo $this->url(array('controller' => 'admin','action' => 'hydrateeditquestionform'), null, true);?>'>
+        <input class='hidden' type='text' name='questionId' value='<?php echo $question['id']; ?>'>
+        <button type="button" class='displayPopUpEdit'></button>
+        </form>
+        </td>
+        <!-- <td>
+            <form id='deleteQuestionGetIdForm' method='post'
+            action='<?php echo $this->url(array('controller' => 'admin','action' => 'deletequestion'), null, true);?>'>
+            <input class='hidden' type='text' name='questionId' value='<?php echo $question['id']; ?>'>
+            <button type="submit" class='delete'></button>
+            </form>
+        </td> -->
+    </tr>
+    <?php } ?>
+
+</table>
+<?php } else { ?>  <h2>Cliquer sur le bouton ci-dessous pour créer une question.</h2><?php } ?>
+<button type="button" id="displayPopUpCreate"> </button> Ajouter une question
+<div id="createQuestion">
+<p id="errorUploadMsg"></p>
+    <form id='createQuestionForm' method='post'
+          action='<?php echo $this->url(array('controller' => 'admin','action' => 'createquestion'), null, true);?>'>
+        <label> Nom de la question : </label><input type='text' name='questionNameCreate' id="questionNameCreate">
+
+    </form>
+</div> 
+<div id="editQuestion">
+<p id="errorUploadMsgEdit"></p>
+    <form id='editQuestionForm' method='post'
+          action='<?php echo $this->url(array('controller' => 'admin','action' => 'editquestion'), null, true);?>'>
+        <label>Nom de la question : </label> <input type='text' id='questionNameEdit'  name='questionNameEdit' >
+        
+        <input class='hidden' type='text' id='questionIdEdit' name='questionIdEdit'>
+    </form>
+</div> 
+</div>
+
+<div class="footer">
+</div>
+ 

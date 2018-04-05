@@ -1,0 +1,30 @@
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/aide.css');
+?>
+
+<h1> Aide </h1>
+
+
+
+<h3 class="dev"> Documentation d'aide </h3>
+<center>
+    <div class="contact">
+
+        <div id="aide">
+            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"100Paris"), null, true)?>"> Aide-mémoire 100% PARIS </a>
+        </div>
+
+        <div id="aide">
+            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"sco"), null, true)?>"> Aide-mémoire SCO </a>
+        </div>
+        
+        <div id="aide">
+            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"upr"), null, true)?>"> Aide-mémoire UPR IDF </a>
+        </div>
+        
+        <div id="aide">
+            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"annexe"), null, true)?>"> Annexe - Données sources </a>
+        </div>
+
+    </div>
+</center>

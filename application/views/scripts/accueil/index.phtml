@@ -1,0 +1,121 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/accueil/accueil.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/accueil.css');
+$auth = Zend_Auth::getInstance();
+?>
+
+<h1>Accueil</h1>
+
+<table class="accueil">
+    <thead>
+        <tr>
+            <th></th>
+            <?php $i=1;
+            foreach ($this->date as $date) {
+                echo '<th>'.$this->jours[$i].'<br>'.$date.'</th>';
+                $i++;
+            }?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php // Affichage des entrées
+        $spanE = count($this->entree);
+        $nbEntree=1;
+        foreach ($this->entree as $entree) {
+            if($nbEntree==1){
+                echo '<tr>';
+                echo '<th rowspan="'.$spanE.'">Entrée</th>';
+            }else{
+                echo '<tr>';
+            }
+            for($jour=1 ; $jour<=5 ; $jour++){
+                if(!isset($entree[$jour])){
+                    echo '<td>-</td>';
+                }else{ 
+                    echo '<td>'.$entree[$jour].'</td>';
+                }
+            }
+            echo '</tr>';
+            $nbEntree++;
+        }
+        ?>
+        
+        <?php // Affichage des plats
+        $spanP = count($this->plat);
+        $nbPlat=1;
+        foreach ($this->plat as $plat) {
+            if($nbPlat==1){
+                echo '<tr>';
+                echo '<th rowspan="'.$spanP.'">Plat</th>';
+            }else{
+                echo '<tr>';
+            }
+            for($jour=1 ; $jour<=5 ; $jour++){
+                if(!isset($plat[$jour])){
+                    echo '<td>-</td>';
+                }else{ 
+                    echo '<td>'.$plat[$jour].'</td>';
+                }
+            }
+            echo '</tr>';
+            $nbPlat++;
+        }
+        ?>
+        
+        <?php // Affichage des desserts
+        $spanD = count($this->dessert);
+        $nbDessert=1;
+        foreach ($this->dessert as $dessert) {
+            if($nbDessert==1){
+                echo '<tr>';
+                echo '<th rowspan="'.$spanD.'">Dessert</th>';
+            }else{
+                echo '<tr>';
+            }
+            for($jour=1 ; $jour<=5 ; $jour++){
+                if(!isset($dessert[$jour])){
+                    echo '<td>-</td>';
+                }else{ 
+                    echo '<td>'.$dessert[$jour].'</td>';
+                }
+            }
+            echo '</tr>';
+            $nbDessert++;
+        }
+        
+        
+        if ($auth->hasIdentity()) {
+            $access = $auth->getIdentity()->IdAccessF;
+            if($access == 1){ ?>
+        <tr>
+            <td rowspan="2"></td>
+            <?php for($i=1;$i<=5;$i++){
+            echo '<td><button id="'.$i.'" class="modifier">Modifier</button></td>';
+            } ?>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <form id='editWeekForm' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'editweek'), null, true);?>'>
+                    <input class='hidden' type='text' name='week' value=''>
+                    <button class="modifierTout">Modifier le menu de la semaine</button>
+                </form>
+            </td>
+        </tr>
+        <?php }else{ ?>
+        <tr>
+            <td></td>
+            <?php $i=1;
+            foreach ($this->date as $date) { ?>
+            <td>
+                <form id='reservation' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'reserver'), null, true);?>'>
+                    <input class='hidden' type='text' name='date' value='<?php echo $date; ?>'>
+                    <button class='reserver'>Reserver</button>
+                </form>
+            </td>
+            <?php $i++;
+            } ?>
+        </tr>
+        <?php }
+        } ?>
+        </tbody>
+</table>

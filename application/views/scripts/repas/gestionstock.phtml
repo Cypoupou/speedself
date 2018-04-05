@@ -1,0 +1,83 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/stock/gestionStock.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionStock.css');
+?>
+
+<div class="header">
+
+    <div class="titre">
+       <h1> Gestion des stocks </h1>
+    </div>
+
+    <div class="logo"></div>
+
+</div>
+
+
+<div class ="contenu">
+    <button type="button" id="displayPopUpCreateStock"> </button> Ajouter un Stock
+    <table id="tabStock">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Type</th>
+            <th>Editer</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php  foreach ($this->stocks as $stock) { ?>
+        <tr>
+            <td><?php echo $stock['StockName']; ?></td>
+            <td><?php echo $stock['StockNumber']; ?></td>
+            <td><?php echo $stock['StockPrice'].' €'; ?></td>
+            <td><?php echo $stock['StockType']; ?></td>
+            <td id="center">
+                <form id='editStockForm' method='post' 
+                action='<?php echo $this->url(array('controller' => 'repas','action' => 'hydrateeditstockform'), null, true);?>'>
+                    <input class='hidden' type='text' name='idStock' value='<?php echo $stock['id']; ?>'>
+                    <button type="button" class='displayPopUpEditStock'></button>
+                </form>
+            </td>
+            
+            
+            <?php //the used stock cannot be suppress
+            //if(Zend_Auth::getInstance()->getIdentity()->StockId != $stock['name']):
+            ?>
+            <td id="center">
+                <form id='deleteStockForm' method='post'
+                action='<?php echo $this->url(array('controller' => 'repas','action' => 'deletestock'), null, true);?>'>
+                <input class='hidden' type='text' name='idStock' value='<?php echo $stock['id']; ?>'>
+                <button type="submit" class='deleteStock'></button>
+                </form>
+            </td>
+            <?php
+            //endif;
+            ?>
+            
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+
+    
+
+    <div id="createStock">
+        <p id="errorUploadMsg"></p>
+        <?php echo $this->form;?>
+    </div> 
+    <div id="editStock">
+        <p id="errorUploadMsgEdit"></p>
+        <?php echo $this->editForm;?>
+        <input class='hidden' type='text' id='idStock' name='idStock' value=''>
+    </div>
+    <div id="deleteStock">
+        <p id="errorUploadMsgDelete"></p>
+        <?php echo $this->deleteForm;?>
+    </div>
+</div>
+
+<div class="footer"></div>
+ 

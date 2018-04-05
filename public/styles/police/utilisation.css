@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'OrangeFont';
+    src: url('police/helvneue35-webfont.eot');
+    src: url('police/helvneue35-webfont.eot?#iefix') format('embedded-opentype'),
+         url('police/helvneue35-webfont.woff') format('woff'),
+         url('police/helvneue35-webfont.ttf') format('truetype'),
+         url('police/helvneue35-webfont.svg#helvetica_neue35_thin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	font-family: OrangeFont, Helvetica, Times New Roman;
+	overflow : visible;
+	min-width : 63em;
+	color: #1C1C1C;
+}

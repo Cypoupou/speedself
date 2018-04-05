@@ -1,0 +1,83 @@
+<?php
+$this->headScript()
+->prependFile($this->baseUrl() . '/scripts/admin/gestionQualite.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionAdmin.css');
+?>
+
+<div class="header">
+
+<div class="titre">
+   <h1> Gestion des qualités </h1>
+</div>
+
+<div class="logo">
+</div>
+
+</div>
+
+
+<div class ="contenu">
+<?php if($this->qualite != null )
+{ ?>
+<table id="tab">
+    <tr>
+        <th>
+        Nom de la qualité
+        </th>
+        <th>
+            Editer
+        </th>
+        <!-- Suppression de la possibilité de supprimer une qualite
+        <th>
+            Supprimer
+        </th> 
+        -->
+    </tr>
+    <?php  foreach ($this->qualite as $qualite) { ?>
+    <tr>
+        <td>
+          <?php  echo $qualite['name']; ?>
+        </td>
+        <td> 
+         <form id='editQualiteGetIdForm' method='post'
+        action='<?php echo $this->url(array('controller' => 'admin','action' => 'hydrateeditqualiteform'), null, true);?>'>
+        <input class='hidden' type='text' name='qualiteId' value='<?php echo $qualite['id']; ?>'>
+        <button type="button" class='displayPopUpEdit'></button>
+        </form>
+        </td>
+        <!-- <td>
+            <form id='deleteQualiteGetIdForm' method='post'
+            action='<?php echo $this->url(array('controller' => 'admin','action' => 'deletequalite'), null, true);?>'>
+            <input class='hidden' type='text' name='qualiteId' value='<?php echo $qualite['id']; ?>'>
+            <button type="submit" class='delete'></button>
+            </form>
+        </td> -->
+    </tr>
+    <?php } ?>
+
+</table>
+<?php } else { ?>  <h2>Cliquer sur le bouton ci-dessous pour créer une qualité.</h2><?php } ?>
+<button type="button" id="displayPopUpCreate"> </button> Ajouter une qualité
+<div id="createQualite">
+<p id="errorUploadMsg"></p>
+    <form id='createQualiteForm' method='post'
+          action='<?php echo $this->url(array('controller' => 'admin','action' => 'createqualite'), null, true);?>'>
+        <label> Nom de la qualité : </label><input type='text' name='qualiteNameCreate' id="qualiteNameCreate">
+
+    </form>
+</div> 
+<div id="editQualite">
+<p id="errorUploadMsgEdit"></p>
+    <form id='editQualiteForm' method='post'
+          action='<?php echo $this->url(array('controller' => 'admin','action' => 'editqualite'), null, true);?>'>
+        <label>Nom de la qualité : </label> <input type='text' id='qualiteNameEdit'  name='qualiteNameEdit' >
+        
+        <input class='hidden' type='text' id='qualiteIdEdit' name='qualiteIdEdit'>
+    </form>
+</div> 
+</div>
+
+<div class="footer">
+</div>
+ 

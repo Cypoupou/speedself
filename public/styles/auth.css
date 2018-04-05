@@ -1,0 +1,32 @@
+@CHARSET "ISO-8859-1";
+
+html { 
+  background: url(../images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+button.bigger{
+	font-size: 7em !important;
+}
+
+body{
+	background-color: transparent;
+}
+
+#connexion
+{
+  text-align: center;
+}
+
+#displayPasswordForgottenForm
+{
+  margin-top: 3em;
+}
+
+form
+{
+  font-size: larger;
+}

@@ -1,0 +1,71 @@
+@CHARSET "utf-8";
+
+.contenu {
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+}
+
+#exportUser {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+#displayPopUpCreateUser
+{
+    background:url("../images/add_icon.png") no-repeat;	
+    border: 0px;
+    height: 38px;
+    width: 38px;
+}
+.displayPopUpEditUser
+{
+    background:url("../images/icon_edit.png") no-repeat;	
+    border: 0px;
+    height: 38px;
+    width: 38px;
+}
+.deleteUser
+{
+    background:url("../images/delete_icon.png") no-repeat;	
+    border: 0px;
+    height: 38px;
+    width: 38px;
+}
+
+
+#tabUser th
+{
+    height: 2.0em;
+    border: thin solid #1C1C1C;	
+    background-color : #FF9D4C;
+    width : 20%;
+    font-size: 1em;
+}
+
+#tabUser td
+{
+    height: 2.0em;	
+    padding-left: 2em;
+    border-left: thin solid #1C1C1C;	
+    border-right: thin solid #1C1C1C;	
+    border-bottom: thin dotted #E5E5E5;
+    font-size: 1em;
+}
+#tabUser 
+{
+    border-collapse: collapse;
+    border: thin solid #1C1C1C;	
+    margin-bottom: 2em;	
+}
+
+.titre
+{
+	
+}
+
+#center {
+    text-align: center;
+    padding-right: 2em;
+}

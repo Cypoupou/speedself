@@ -1,0 +1,28 @@
+/*
+ * CSS de la page d'accueil
+ */
+
+.spanSaveButton{
+    text-align: center;
+    padding: 1em;
+    width: 98%;
+    display: block;
+}
+
+.accueil{
+    text-align: center;
+    width: 100%;
+    display: block;
+    border-collapse: collapse;
+}
+
+.accueil th{
+    //width: 18%;
+    width: 175px;
+    border: 1px solid black;
+    font-size: 1.1em;
+}
+
+.accueil td{
+    border: 1px solid black;
+}

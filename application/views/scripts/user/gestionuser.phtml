@@ -1,0 +1,81 @@
+<?php
+$this->headScript()
+->prependFile($this->baseUrl() . '/scripts/user/gestionUser.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionUser.css');
+?>
+
+<div class="header">
+
+    <div class="titre">
+       <h1> Gestion des utilisateurs </h1>
+    </div>
+
+    <div class="logo"></div>
+
+</div>
+
+
+<div class ="contenu">
+    <button type="button" id="displayPopUpCreateUser"> </button> Ajouter un utilisateur
+    <table id="tabUser">
+        <thead>
+        <tr>
+            <th>Code alliance</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Editer</th>
+            <!--  <th>Supprimer</th>  -->
+        </tr>
+        </thead>
+        <tbody>
+        <?php  foreach ($this->users as $user) { ?>
+        <tr>
+            <td><?php  echo $user['id']; ?></td>
+            <td><?php  echo $user['lastName']; ?></td>
+            <td><?php  echo $user['firstName']; ?></td>
+            <td id="center">
+                <form id='editUserForm' method='post' 
+                action='<?php echo $this->url(array('controller' => 'user','action' => 'hydrateedituserform'), null, true);?>'>
+                    <input class='hidden' type='text' name='idUser' value='<?php echo $user['id']; ?>'>
+                    <button type="button" class='displayPopUpEditUser'></button>
+                </form>
+            </td>
+            
+            <!--<td>
+            <?php //the connected user cannot suppress himself
+            if(Zend_Auth::getInstance()->getIdentity()->UserId != $user['id']):
+            ?>
+                <form id='deleteUserForm' method='post' 
+                action='<?php echo $this->url(array('controller' => 'user','action' => 'deleteuser'), null, true);?>'>
+                <input class='hidden' type='text' name='idUser' value='<?php echo $user['id']; ?>'>
+                <button type="submit" class='deleteUser'></button>
+                </form>
+            <?php
+            endif;
+            ?>
+            </td>-->
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+
+    
+
+    <div id="createUser">
+        <p id="errorUploadMsg"></p>
+        <?php echo $this->form;?>
+    </div> 
+    <div id="editUser">
+        <p id="errorUploadMsgEdit"></p>
+        <?php echo $this->editForm;?>
+    </div>
+    
+    <form id="exportUser" method="POST"
+          action="<?php echo $this->url(array('controller' => 'user', 'action' => 'exportexceluser'), null, true); ?>">
+        <div class="bouton"><input type="submit" value="Export de la base Utilisateur" class="buttonExportExcelRecherche"></div>
+    </form>
+</div>
+
+<div class="footer"></div>
+ 

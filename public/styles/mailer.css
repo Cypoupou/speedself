@@ -1,0 +1,78 @@
+.deleteIcon{
+	cursor : pointer;
+}
+.deleteIcon > img{
+	width : 1em;
+	padding-left : 0.5em;	
+}
+.deleteIconEmail{
+	width : 1em;
+	padding-left : 0.5em;
+	cursor : pointer;		
+}
+li {
+	list-style-type: none
+}
+
+.loading {
+	width : 2em;
+	float:right;
+	margin-right: 3em;	
+}
+.add-to{
+	cursor:pointer;
+	width : 1.5em;
+	padding-left : 0.5em;
+}
+#sendButton{
+	float: right;
+}
+#formMail{
+	clear:both;
+}
+.email_card{
+	margin: 0.1em;
+	-webkit-border-radius: 4;
+	-moz-border-radius: 4;
+	border-radius: 4px;
+	font-family: Arial;
+	color: #ff6600;
+	background: #d6d6d6;
+	padding: 0.1em 0.3em;
+	border: solid #000000 2px;
+	text-decoration: none;
+	display: inline-block
+}
+
+.email_card:hover{
+	background: #d6d6d6;
+	background-image: -webkit-linear-gradient(top, #d6d6d6, #bfbfbf);
+	background-image: -moz-linear-gradient(top, #d6d6d6, #bfbfbf);
+	background-image: -ms-linear-gradient(top, #d6d6d6, #bfbfbf);
+	background-image: -o-linear-gradient(top, #d6d6d6, #bfbfbf);
+	background-image: linear-gradient(to bottom, #d6d6d6, #bfbfbf);
+	text-decoration: none;
+}
+
+  .ui-autocomplete {
+    max-height: 200px;
+    width: 500px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+
+input.emailAddresses{
+	width: 25em;
+}
+
+#files-label{
+    display: inline-block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+#subject-label{
+    display: inline-block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}

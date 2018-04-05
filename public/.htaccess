@@ -1,0 +1,39 @@
+# Fichier htaccess du projet
+
+# Definition des charsets par defaut
+AddDefaultCharset utf-8
+AddCharset utf-8 .css
+AddCharset utf-8 .js
+
+# Desactive les magic_quotes
+<IfModule php5_module>
+  php_value magic_quotes_gpc 0
+  php_value magic_quotes_runtime 0
+  php_value magic_quotes_sybase 0
+  php_value date.timezone Europe/Paris
+</IfModule>
+
+# Permet les regles de reecritures
+Options +FollowSymLinks
+
+# Reecriture des URL
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php [NC,L]
+
+# Optionnel
+# add an environment variable for the app
+# we define that variable can receive "production" or "development"
+SetEnv APPLICATION_ENV development
+# we define a variable to enable/disable notifications to the sender/users
+# values : "all" or "users_only" or "none"
+SetEnv SEND_NOTIFICATION users_only
+
+# Flags d'optimisation
+SetEnv OPTIM_CONFIG    1
+SetEnv OPTIM_RESOURCE  1
+SetEnv OPTIM_CACHE     1
+SetEnv OPTIM_CLASSMAP  1
+SetEnv OPTIM_PLUGINMAP 1

@@ -1,0 +1,27 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/user/informations.js');
+?>
+
+<h1> Mes informations </h1>
+
+<div id="info">
+
+    <h1> Modifier mes informations </h1>
+
+    <p><b> Identifiant :</b> <?php echo $this->user['id']; ?> </p>
+    <p><b> Nom et prénom :</b> <?php echo $this->user['name']; ?> </p>
+    <p><b> Email :</b> <?php echo $this->user['email']; ?> </p>
+
+    <button type="button" class="custom" id="displayPopUpEditUser">Modifier mes informations</button> 
+    <div id="editUser">
+        <p id="errorUploadMsgEdit"></p>
+        <?php echo $this->editForm;?>
+    </div>
+    
+    <button type="button" class="custom" id="displayModifyPwd">Réinitialiser le mot de passe</button> 
+    <div id="changePwd">
+        <p id="errorModifyPwd"></p>
+        <?php echo $this->form; ?>
+    </div>
+</div>
+

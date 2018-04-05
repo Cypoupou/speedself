@@ -1,0 +1,27 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/admin/gestionFiche.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionAdmin.css');
+?>
+
+<div class="titre">
+   <h1> Gestion des fiches </h1>
+</div>
+
+
+
+<fieldset class="cadreCreation cadre">
+    <article>
+        <p><?php echo $this->phrase; ?><br><?php echo $this->question; ?></p>
+
+        <?php
+        if($this->emptyFiche == 0){
+
+        }else{ ?>
+            <span class="spanSaveButton disabled">
+                <button class="custom deleteFiche" type="button" name="Supprimer" data-number=<?php echo $this->emptyFiche ;?>>Supprimer</button>
+            </span>
+        <?php
+        }
+        ?>
+    </article>
+</fieldset>

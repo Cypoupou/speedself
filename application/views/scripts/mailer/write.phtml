@@ -1,0 +1,61 @@
+<?php
+$this->headScript()
+    ->prependFile($this->baseUrl() . '/scripts/ckeditor/ckeditor.js')
+    ->prependFile($this->baseUrl() . '/scripts/mailer/write.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/mailer.css');
+
+echo $this->headScript();
+echo $this->headLink();
+?>
+<br>
+<h1>Rédaction e-mail</h1>
+<p id="errorMsg"></p>
+<button id="sendButton" class="custom" type="button" name="Envoyer">Envoyer</button>
+<input type="HIDDEN" name="dest" id="dest" value="<?php echo $this->dest; ?>">
+<table>
+    <tr>
+        <td>
+            A :
+        </td>
+        <td>
+            <input type="text" id="to-autocomplete" class="autocompleteAddress emailAddresses" />
+            <img src="<?php echo $this->baseUrl();?>/images/add_icon.png" id="add-to-to" class="add-to" />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td id="to-email_cards">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Cc :
+        </td>
+        <td>
+            <input type="text" id="cc-autocomplete" class="autocompleteAddress emailAddresses" />
+            <img src="<?php echo $this->baseUrl();?>/images/add_icon.png" id="add-to-cc" class="add-to" />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td id="cc-email_cards">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Cci :
+        </td>
+        <td>
+            <input type="text" id="cci-autocomplete" class="autocompleteAddress emailAddresses" />
+            <img src="<?php echo $this->baseUrl();?>/images/add_icon.png" id="add-to-cci" class="add-to" />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td id="cci-email_cards">
+        </td>
+    </tr>
+</table>
+<?php echo $this->form;?>
+<span class="hidden" id="type_of_email"><?php echo $this->type; ?></span>

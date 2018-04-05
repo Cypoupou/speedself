@@ -1,0 +1,82 @@
+<?php
+$this->headScript()
+->prependFile($this->baseUrl() . '/scripts/admin/gestionContact.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionAdmin.css');
+?>
+
+<div class="header">
+
+<div class="titre">
+   <h1> Gestion des contacts </h1>
+</div>
+
+<div class="logo">
+</div>
+
+</div>
+
+
+<section class ="contenu">
+<?php if($this->contacts != null)
+{ ?>
+<table id="tab">
+    <tr>
+        <th>
+            Nom du contact
+        </th>
+        <th>
+            Prénom du contact
+        </th>
+        <th>
+            Editer
+        </th>
+        <th>
+            Supprimer
+        </th>
+    </tr>
+
+    <?php  foreach ($this->contacts as $contact) { ?>
+    <tr>
+        <td>
+          <?php  echo $contact['lastName']; ?>
+        </td>
+        <td>
+          <?php  echo $contact['firstName']; ?>
+        </td>
+        <td> 
+         <form id='editContactGetIdForm' method='post'
+        action='<?php echo $this->url(array('controller' => 'admin','action' => 'hydrateeditcontactform'), null, true);?>'>
+        <input class='hidden' type='text' name='contactId' value='<?php echo $contact['id']; ?>'>
+        <button type="button" class='displayPopUpEdit'></button>
+        </form>
+        </td>
+        <td>
+            <form id='deleteContactGetIdForm' method='post'
+            action='<?php echo $this->url(array('controller' => 'admin','action' => 'deletecontact'), null, true);?>'>
+            <input class='hidden' type='text' name='contactId' value='<?php echo $contact['id']; ?>'>
+            <button type="submit" class='delete'></button>
+            </form>
+        </td>
+    </tr>
+    <?php } ?>
+
+</table>
+<?php } else { ?>  <h2>Cliquer sur le bouton ci-dessous pour créer un contact.</h2><?php } ?>
+<button type="button" id="displayPopUpCreate"> </button> Ajouter un contact
+</section>
+
+
+<div id="createContact">
+    <p id="errorUploadMsg"></p>
+        <?php echo $this->form; ?>
+</div>
+<div id="editContact">
+    <p id="errorUploadMsgEdit"></p>
+    <?php echo $this->editform; ?>
+</div>
+
+
+<div class="footer">
+</div>
+ 

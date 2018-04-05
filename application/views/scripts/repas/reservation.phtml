@@ -1,0 +1,41 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/repas/repas.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/repas.css');
+?>
+
+<section id="repas">
+        <?php //if($this->reclas != null) : ?>
+        <table id="tableRepas">
+            <thead>
+                <tr>
+                    <th> ID ticket </th>
+                    <th> Date </th>
+                    <th> Montant </th>
+                    <th> Expiration </th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /*foreach($this->reclas as $recla):
+                $imb = str_replace("/","_",$recla['imb']);
+                ?>
+
+                <tr>
+                    <td>
+                        <a href="<?php echo $this->baseUrl()."/reclamation/reclacreator/imb/".$imb."/id/".$recla['id'];?>"><?php echo $recla["imb"]; ?></a>
+                    </td>
+                    <td><span><?php echo $recla["dateLastActionUS"]; ?></span>
+                        <?php echo $recla["dateLastAction"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $recla["lastActor"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $recla["syndic"]; ?>
+                    </td>
+
+                </tr>
+            <?php endforeach;*/?>
+            </tbody>
+        </table>
+    <?php //endif;?>
+</section>

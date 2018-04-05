@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="icon" type="image/x-icon" href="<?php echo $this->baseUrl(); ?>/images/layout/speddself.ico" />
+        <link href="<?php echo $this->baseUrl(); ?>/images/layout/speddself.ico" rel='shortcut icon' />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+        <title>SpeedSelf</title>
+
+        <?php
+        $this->headScript()->prependFile($this->baseUrl() . '/scripts/functions.js')
+                            ->prependFile($this->baseUrl() . '/scripts/jquery.dataTables.min.js')
+                            ->prependFile($this->baseUrl() . '/scripts/jquery-ui.min.js')
+                            ->prependFile($this->baseUrl() . '/scripts/jquery.min.js');
+
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/global.css');
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/jquery-ui-1.10.4.custom.css');
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/jquery.dataTables.min.css');
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/jquery.dataTables_themeroller.css');
+        
+
+        echo $this->headScript();
+        echo $this->headLink();
+        ?>
+
+    </head>
+    
+    <body>
+        <header>
+            
+            <div class="header-container">
+                <div class="user">
+                    <?php $auth = Zend_Auth::getInstance();
+                    if($auth->hasIdentity()){ ?>
+                    <div class="name">
+                        <span id="name-header">bonjour <span class="color-orange"><a href="<?php $this->url(array("controller"=>"user","action"=>"informations"),null, true);?>"><?php echo $auth->getIdentity()->UserFirstName; ?><span id="name"><h3>Informations</h3></span></a></span></span>
+                    </div>
+                    <div class="logout">
+                        <a href="<?php echo $this->url(array("controller"=>"auth","action"=>"logout"), null, true)?>">
+                            <img alt="logout" src="<?php echo $this->baseUrl()."/images/18-512.png";?>" />
+                            <span><h3>Déconnexion</h3></span>
+                        </a>
+                    </div>
+                    <?php }else{ ?>
+                    <div class="name">
+                        <button class="custom" type="button" id="displayLoginForm">Connexion</button>
+                    </div>
+                    <div id="loginpopupForm">
+                        <p id="errorLogin"></p>
+                        <?php echo $this->form;?>
+                    </div>
+                    <div class="logout">
+                        <button class="custom" type="button" id="displayPasswordForgottenForm">Mot de passe oublié</button>
+                    </div>
+                    <div id="passwordforgottenpopupForm">
+                        <p id="errorPassword"></p>
+                        <?php echo $this->passwordforgottenForm; ?>
+                    </div>
+                    <?php } ?>
+                </div>
+
+                <div class="logo"> 
+                    <a href="<?php echo $this->baseUrl()."/accueil";?>">
+                        <div class="logo-orange">
+                            <img alt="logo" id="logo-header" src="<?php echo $this->baseUrl()."/images/layout/speddself.png";?>" /> 
+                        </div>
+                        <div class="logo-trac">        
+                            <span id="titre-entete" class="color-orange">SpeedSelf</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <?php
+        //If user is not connected, menu is not displayed
+        if ($auth->hasIdentity()) {
+            $access = $auth->getIdentity()->IdAccessF; ?>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"accueil","action"=>"index"), null, true)?>"> Accueil </a>
+                </li>
+                <?php if($access == 2) { ?>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"repas","action"=>"historique"), null, true)?>"> Historique paiements </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"repas","action"=>"reservation"), null, true)?>"> Mes repas </a>
+                </li>
+                <?php }
+                if($access == 1) { ?>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"repas","action"=>"gestionstock"), null, true)?>"> Gestion des stocks </a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"user","action"=>"gestionuser"), null, true)?>"> Gestions des utilisateurs </a>
+                </li>
+                <?php } ?>
+                <li>
+                    <a href="<?php echo $this->url(array("controller"=>"user","action"=>"informations"), null, true)?>"> Mes infos </a>
+                </li>
+            </ul>
+        </nav>
+
+        <footer>
+            <div class="footer">
+                <a target="_blank" href="<?php echo $this->url(array("controller"=>"footer","action"=>"aide"), null, true)?>"> Aide </a>
+                <a target="_blank" href="<?php echo $this->url(array("controller"=>"footer","action"=>"contact"), null, true)?>"> Contact </a>
+            </div>
+        </footer>
+        <?php }?>
+        
+        <section>
+            <div id="content">
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </section>
+    </body>
+</html>
