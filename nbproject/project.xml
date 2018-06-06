@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4aa32df1b73ab9b8f0b37ade4b6f9096072ebc8a
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.php.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/php-project/1">
+<<<<<<< HEAD
+            <name>speedself</name>
+        </data>
+    </configuration>
+</project>
+=======
+            <name>SpeedSelf</name>
+        </data>
+    </configuration>
+</project>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://www.netbeans.org/ns/project/1">
     <type>org.netbeans.modules.php.project</type>
@@ -7,3 +27,5 @@
         </data>
     </configuration>
 </project>
+>>>>>>> c5b3bd2ca58ef9de1e31959d5d6de518090ebc5b
+>>>>>>> 4aa32df1b73ab9b8f0b37ade4b6f9096072ebc8a

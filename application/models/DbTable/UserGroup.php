@@ -1,7 +1,11 @@
 <?php
 
 class Application_Model_DbTable_UserGroup extends Zend_Db_Table_Abstract {
+<<<<<<< HEAD
     protected $_name = 'userGroup';  // table name in the database
+=======
+    protected $_name = 'usergroup';  // table name in the database
+>>>>>>> 4aa32df1b73ab9b8f0b37ade4b6f9096072ebc8a
     protected $_primary = 'GroupId'; //primary key
     protected $_userGroupName = 'GroupName'; // Name of the access
     protected $_groupSignature = 'GroupSignature';
