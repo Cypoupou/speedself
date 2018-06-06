@@ -7,7 +7,7 @@
  */
 
 class Application_Model_DbTable_Attachment extends Zend_Db_Table_Abstract {
-    protected $_name = 'attachment';  // table name in the database
+    protected $_name = 'Attachment';  // table name in the database
     protected $_primary = 'AttachmentId'; //primary key
     protected $_ficheId = 'IdFicheF'; // id of the fiche's attachement
 
