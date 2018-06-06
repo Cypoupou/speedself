@@ -1,3 +1,45 @@
 <?php
 $this->headScript()->prependFile($this->baseUrl() . '/scripts/auth/login.js');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/auth.css');
+?>
+
+<table id="connexion">
+    <!--[if IE]>
+    <tr>
+        <td>
+            <input type="text" value="Pour des soucis de compatibilité veuillez utiliser Mozilla FireFox ou Google Chrome" disabled="disabled" size="76">
+        </td>
+    </tr>
+    <![endif]-->
+    
+    <tr>
+        <td>
+            <button class="custom bigger" type="button" id="displayLoginForm"> Connexion </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="custom" type="button" id="displayPasswordForgottenForm"> Mot de passe oublié </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button class="custom bigger" type="button" id="displaySignInForm"> Inscription </button>
+        </td>
+    </tr>
+</table>
+
+<div id="loginpopupForm">
+    <p id="errorLogin"></p>
+    <?php echo $this->form;?>
+</div>
+
+<div id="passwordforgottenpopupForm">
+    <p id="errorPassword"></p>
+    <?php echo $this->passwordforgottenForm; ?>
+</div>
+
+<div id="signinpopupForm">
+    <p id="errorSignIn"></p>
+    <?php echo $this->signinform;?>
+</div>

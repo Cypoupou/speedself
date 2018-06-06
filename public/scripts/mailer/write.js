@@ -29,9 +29,9 @@ window.onload = function(){
 		deleteIcon.setAttribute("class", "deleteIcon");
 		if(window.location.hostname.indexOf('localhost') === -1
 				&& window.location.hostname.indexOf('dvrftwsc01') === -1)
-			deleteIcon.innerHTML = "<img src='/images/delete_icon.png' alt='suppr'>";
+			deleteIcon.innerHTML = "<img src='/images/icon/delete_small.png' alt='suppr'>";
 		else
-			deleteIcon.innerHTML = "<img src='/TRACv2/public/images/delete_icon.png' alt='suppr'>";
+			deleteIcon.innerHTML = "<img src='/TRACv2/public/images/icon/delete_small.png' alt='suppr'>";
 		deleteIcon.onclick = function(){
 			var parent = this.parentNode;
 			parent.parentNode.removeChild(parent);
@@ -285,9 +285,9 @@ function createBubbleEmail(email, field){
 	icon.className = "deleteIconEmail";
 	if(window.location.hostname.indexOf('localhost') === -1
 			&& window.location.hostname.indexOf('dvrftwsc01') === -1)
-		icon.src = "/images/delete_icon.png";
+		icon.src = "/images/icon/delete_small.png.png";
 	else
-		icon.src = "/TRACv2/public/images/delete_icon.png";
+		icon.src = "/TRACv2/public/images/icon/delete_small.png";
 	elem.appendChild(icon);
 	icon.onclick = function(){
 		var parent = this.parentNode;

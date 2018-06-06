@@ -11,6 +11,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract {
     protected $_idaccess = 'IdAccessF'; // access of the user
     protected $_idgroup = 'UserGroupIdF'; // group of the user
     protected $_salt = 'UserSalt'; // Salt of the user
+    protected $_solde = 'UserSolde'; // Solde of the user
     
     
     public function init(){
@@ -71,16 +72,14 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract {
      * @param idUser, firstname, lastname, email, signature, accees
      * @return ok if correct, else return the exception message
      */
-    public function updateUser($idUser, $firstname, $lastname, $email, $tel, $group){
+    public function updateUser($idUser, $firstname, $lastname, $email, $tel){
         try{
             $update = $this->update(array(
-                $this->_lastName    => $lastname,
-                $this->_firstName   => $firstname,
-                $this->_email       => $email,
-                $this->_idgroup     => $group ,
-                $this->_tel         => $tel,
-            ), array(
-                $this->_primary.'= ?' => $idUser ));
+                $this->_lastName => $lastname,
+                $this->_firstName => $firstname,
+                $this->_email => $email,
+                $this->_tel => $tel,
+            ), $this->_primary." LIKE '".$idUser."'");
             return "ok";
         }catch (Zend_Exception $e){
             return $e->getMessage();
@@ -286,6 +285,30 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract {
             return null;
         else
             return $row['UserGroupIdf'];
+    }
+    
+    public function getUserSolde($idUser){
+
+        $select = $this->select();
+        $select->where('UserId = ?', $idUser);
+
+        $row = $this->fetchRow($select);
+
+        if($row == null)
+            return null;
+        else
+            return $row['UserSolde'];
+    }
+    
+    public function updateSolde($idUser, $solde) {
+        try{
+            $update = $this->update(array(
+                $this->_solde => $solde,
+            ), $this->_primary[1]." LIKE '".$idUser."'");
+            return "ok";
+        }catch (Zend_Exception $e){
+            return $e->getMessage();
+        }
     }
 
 }

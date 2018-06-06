@@ -3,53 +3,40 @@ $this->headScript()->prependFile($this->baseUrl() . '/scripts/repas/repas.js');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/repas.css');
 ?>
 
+<h1>Historique paiements</h1>
+
 <section id="repas">
-        <?php //if($this->reclas != null) : ?>
         <table id="tableRepas">
+            
             <thead>
                 <tr>
                     <th> ID payement </th>
-                    <th> Date </th>
+                    <th> Date de recharge du compte</th>
                     <th> Montant </th>
                     <th> Référence </th>
                 </tr>
             </thead>
+            
             <tbody>
+            <?php if($this->historique != null) : ?>
+                <?php foreach($this->historique as $historique): ?>
                 <tr>
                     <td>
-                        001
+                        <?php echo $historique["HistoriqueId"]; ?>
+                    </td>
+                    <td><span><?php echo $historique["HistoriqueDateUS"]; ?></span>
+                        <?php echo $historique["HistoriqueDate"]; ?>
                     </td>
                     <td>
-                        22/06/2018
+                        <?php echo $historique["HistoriqueMontant"]; ?>€
                     </td>
                     <td>
-                        12€
-                    </td>
-                    <td>
-                        123587
+                        <?php echo $historique["HistoriqueReference"]; ?>
                     </td>
                 </tr>
-            <?php /*foreach($this->reclas as $recla):
-                $imb = str_replace("/","_",$recla['imb']);
-                ?>
-
-                <tr>
-                    <td>
-                        <a href="<?php echo $this->baseUrl()."/reclamation/reclacreator/imb/".$imb."/id/".$recla['id'];?>"><?php echo $recla["imb"]; ?></a>
-                    </td>
-                    <td><span><?php echo $recla["dateLastActionUS"]; ?></span>
-                        <?php echo $recla["dateLastAction"]; ?>
-                    </td>
-                    <td>
-                        <?php echo $recla["lastActor"]; ?>
-                    </td>
-                    <td>
-                        <?php echo $recla["syndic"]; ?>
-                    </td>
-
-                </tr>
-            <?php endforeach;*/?>
+                <?php endforeach;?>
+            <?php endif;?>
             </tbody>
+            
         </table>
-    <?php //endif;?>
 </section>

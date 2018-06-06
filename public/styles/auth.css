@@ -1,32 +1,30 @@
 @CHARSET "ISO-8859-1";
 
 html { 
-  background: url(../images/background.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(../images/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-button.bigger{
-	font-size: 7em !important;
+button.bigger {
+    font-size: 5em !important;
 }
 
-body{
-	background-color: transparent;
+body {
+    background-color: transparent;
 }
 
-#connexion
-{
-  text-align: center;
+#connexion {
+    text-align: center;
+    margin: auto;
 }
 
-#displayPasswordForgottenForm
-{
-  margin-top: 3em;
+#displayPasswordForgottenForm {
+    margin-top: 3em;
 }
 
-form
-{
-  font-size: larger;
+form {
+    font-size: larger;
 }

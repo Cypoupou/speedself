@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp64/www/SpeedSelf/application/controllers/AccueilController.php</file>
-            <file>file:/D:/wamp64/www/SpeedSelf/application/views/scripts/accueil/index.phtml</file>
-            <file>file:/D:/wamp64/www/SpeedSelf/application/layouts/scripts/layout.phtml</file>
+            <file>file:/D:/wamp64/www/speedself/public/index.php</file>
+            <file>file:/D:/wamp64/www/speedself/public/.htaccess</file>
         </group>
     </open-files>
 </project-private>

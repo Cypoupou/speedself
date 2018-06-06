@@ -1,0 +1,121 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/accueil/editmenu.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/editmenu.css');
+?>
+
+<h1>Modification du menu du <?php echo $this->day.' '.$this->date ?></h1>
+
+
+<form id='editdayForm' method='POST' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'editdayform'), null, true);?>'>
+    <section>
+        <fieldset class="cadre entree" >
+            <legend>Entrée</legend>
+            <article>
+                <ul id="sortable1" class="connectedSortable1">
+                <?php if($this->entreelist != NULL){
+                    foreach ($this->entreelist as $entree){
+                        $i = 0;
+                        if($this->entreeIds != NULL){
+                            foreach ($this->entreeIds as $id => $name){
+                                if($entree['StockId'] == $id){
+                                    $i++;
+                                }
+                            }
+                        }
+                        if($i == 0){
+                            echo '<li class="ui-state-default" id="'.$entree['StockId'].'">'.$entree['StockName'].'</li>';
+                        }
+                    }
+                } ?>
+                </ul>
+                <ul id="sortable2" class="connectedSortable1">
+                <?php if($this->entreeIds != NULL){
+                    foreach ($this->entreeIds as $id => $name){
+                        if(in_array($id, $this->idArray)){
+                            echo '<li class="ui-state-highlight ui-state-disabled" id="'.$id.'">'.$name.'</li>';
+                        }else{
+                            echo '<li class="ui-state-highlight" id="'.$id.'">'.$name.'</li>';
+                        }
+                    }
+                }?>
+                </ul>
+            </article>
+        </fieldset>
+        
+        <fieldset class="cadre plat">
+            <legend>Plat</legend>
+            <article>
+                <ul id="sortable3" class="connectedSortable2">
+                <?php if($this->platlist != NULL){
+                    foreach ($this->platlist as $plat){
+                        $i = 0;
+                        if($this->platIds != NULL){
+                            foreach ($this->platIds as $id => $name){
+                                if($plat['StockId'] == $id){
+                                    $i++;
+                                }
+                            }
+                        }
+                        if($i == 0){
+                            echo '<li class="ui-state-default" id="'.$plat['StockId'].'">'.$plat['StockName'].'</li>';
+                        }
+                    }
+                } ?>
+                </ul>
+                <ul id="sortable4" class="connectedSortable2">
+                <?php if($this->platIds != NULL){
+                    foreach ($this->platIds as $id => $name){
+                        if(in_array($id, $this->idArray)){
+                            echo '<li class="ui-state-highlight ui-state-disabled" id="'.$id.'">'.$name.'</li>';
+                        }else{
+                            echo '<li class="ui-state-highlight" id="'.$id.'">'.$name.'</li>';
+                        }
+                    }
+                }?>
+                </ul>
+            </article>
+        </fieldset>
+        
+        <fieldset class="cadre dessert">
+            <legend>Dessert</legend>
+            <article>
+                <ul id="sortable5" class="connectedSortable3">
+                <?php if($this->dessertlist != NULL){
+                    foreach ($this->dessertlist as $dessert){
+                        $i = 0;
+                        if($this->dessertIds != NULL){
+                            foreach ($this->dessertIds as $id => $name){
+                                if($dessert['StockId'] == $id){
+                                    $i++;
+                                }
+                            }
+                        }
+                        if($i == 0){
+                            echo '<li class="ui-state-default" id="'.$dessert['StockId'].'">'.$dessert['StockName'].'</li>';
+                        }
+                    }
+                } ?>
+                </ul>
+                <ul id="sortable6" class="connectedSortable3">
+                <?php if($this->dessertIds != NULL){
+                    foreach ($this->dessertIds as $id => $name){
+                        if(in_array($id, $this->idArray)){
+                            echo '<li class="ui-state-highlight ui-state-disabled" id="'.$id.'">'.$name.'</li>';
+                        }else{
+                            echo '<li class="ui-state-highlight" id="'.$id.'">'.$name.'</li>';
+                        }
+                    }
+                }?>
+                </ul>
+            </article>
+        </fieldset>
+    </section>
+    
+    <i>Faites glisser les éléments vers la liste de droite pour les ajouter au menu</i>
+    
+    <article>
+        <span class="spanSaveButton">
+            <button class="custom saveButton" type="button" data-date="<?php echo $this->date; ?>" name="Enregistrer">Valider</button>
+        </span>
+    </article>
+</form>

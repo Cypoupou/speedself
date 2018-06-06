@@ -7,30 +7,12 @@
  */
 
 class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
-    protected $_name = 'Menu';  // table name in the database
+    protected $_name = 'menu';  // table name in the database
     protected $_primary = 'MenuId'; //primary key
     protected $_stockIdF = 'StockIdF'; //stock id Foreign key
     protected $_menuDate = 'MenuDate'; //date
 
-    
-    /**
-     * Get one menu with her id
-     * @return NULL|array: return the result or null if there is no result
-     */
-    public function getMenuById($idMenu)
-    {
-
-        $select = $this->select();
-        $select->where($this->_primary[1].' = ?', $idMenu);
-        $row = $this->fetchRow($select);
-
-        if($row == null)
-            return null;
-        else
-            return $row;
-
-    }
-    
+     
     public function getMenuByDate($date)
     {
         $select = $this->select();
@@ -43,6 +25,7 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
         ), 'M.StockIdF = S.StockId');
         
         $select->where($this->_menuDate.' = ?', $date);
+        $select->where('StockNumber > 0');
         $res = $this->fetchAll($select);
         
         
@@ -53,7 +36,7 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
             $returned_arr = array();
             foreach($res as $row)
             {
-                $returned_arr[$row->MenuId] = array(
+                $returned_arr[] = array(
                     'StockName'     => $row->StockName,
                     'StockPrice'    => $row->StockPrice,
                     'StockType'     => $row->StockType,
@@ -68,6 +51,7 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
     {
         $select = $this->select();
         $select->setIntegrityCheck(false);
+        $select->order('StockName');
         $select->from(array('M'=>$this->_name));
 
         //join with the user
@@ -77,6 +61,7 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
         
         $select->where($this->_menuDate.' = ?', $date);
         $select->where('StockType = ?', $type);
+        $select->where('StockNumber > 0');
         $res = $this->fetchAll($select);
         
         
@@ -88,6 +73,7 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
             foreach($res as $row)
             {
                 $returned_arr[] = array(
+                    'StockId'       => $row->StockId,
                     'StockName'     => $row->StockName,
                     'StockPrice'    => $row->StockPrice,
                     'MenuDate'      => $row->MenuDate,
@@ -97,6 +83,46 @@ class Application_Model_DbTable_Menu extends Zend_Db_Table_Abstract {
         }
     }
     
+    public function deleteMenuByDate($date) {
+        try{
+            $where = array(
+                $this->_menuDate.'= ?' => $date
+            );
+            $this->delete($where);  
+            return "ok";
+            
+        }catch (Zend_Exception $e){
+            return $e->getMessage();
+        }
+    }
+    
+    public function insertMenu($date, $stockId) {
+        try{
+            $insert = $this->insert(array(
+                $this->_stockIdF    => $stockId ,
+                $this->_menuDate    => $date ,
+            ));
+            return "ok";
+    
+        }catch(Zend_Exception $e){
+            return $e->getMessage();
+        }
+    }
+    
+    public function getUsedStockByDateAndId($date, $id){
+        $select = $this->select();
+        $select->setIntegrityCheck(false);
+        
+        $select->where($this->_menuDate.' >= ?', $date);
+        $select->where($this->_stockIdF. ' = ?', $id);
+        $res = $this->fetchAll($select);
+        
+        if($res == null || $res->count() == 0){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 }
 
 

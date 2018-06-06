@@ -1,0 +1,72 @@
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+</style>
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/accueil/reservation.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/reservation.css');
+?>
+
+
+<h1>Reservation du repas du <?php echo $this->day.' '.$this->date ?></h1>
+
+<form id='reservationForm' method='POST' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'reservationform'), null, true);?>'>
+    <section>
+        <fieldset class="cadre entree" >
+            <legend>Entrée</legend>
+            <article>
+                <?php if($this->entree == NULL){
+                    echo '<p><b>Aucune entrée pour ce jour</b></p>';
+                }else{
+                    foreach ($this->entree as $entree){
+                        $id = $entree['StockId'];
+                        $name = $entree['StockName'];
+                        $price = $entree['StockPrice'];
+                        echo '<input type="checkbox" class="check" id="'.$id.'" name="menu['.$id.']" value="'.$price.'"><label for="'.$id.'">'.$name.' ('.$price.'€)</label><br>';
+                    }
+                }?>
+            </article>
+        </fieldset>
+        
+        <fieldset class="cadre plat">
+            <legend>Plat</legend>
+            <article>
+                <?php if($this->plat == NULL){
+                    echo '<p><b>Aucun plat pour ce jour</b></p>';
+                }else{
+                    foreach ($this->plat as $plat){
+                        $id = $plat['StockId'];
+                        $name = $plat['StockName'];
+                        $price = $plat['StockPrice'];
+                        echo '<input type="checkbox" class="check" id="'.$id.'" name="menu['.$id.']" value="'.$price.'"><label for="'.$id.'">'.$name.' ('.$price.'€)</label><br>';
+                    }
+                }?>
+            </article>
+        </fieldset>
+        
+        <fieldset class="cadre dessert">
+            <legend>Dessert</legend>
+            <article>
+                <?php if($this->dessert == NULL){
+                    echo '<p><b>Aucun dessert pour ce jour</b></p>';
+                }else{
+                    foreach ($this->dessert as $dessert){
+                        $id = $dessert['StockId'];
+                        $name = $dessert['StockName'];
+                        $price = $dessert['StockPrice'];
+                        echo '<input type="checkbox" class="check" id="'.$id.'" name="menu['.$id.']" value="'.$price.'"><label for="'.$id.'">'.$name.' ('.$price.'€)</label><br>';
+                    }
+                }?>
+            </article>
+        </fieldset>
+    </section>
+    
+    <article class='center'>
+        <td>Total du panier : <input type="hidden" id="total">€</td>
+    </article>
+    
+    <article>
+        <span class="spanSaveButton">
+            <button class="custom saveButton" type="button" data-date="<?php echo $this->date; ?>" name="Enregistrer">Valider</button>
+        </span>
+    </article>
+</form>

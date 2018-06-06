@@ -5,26 +5,29 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/aide.css');
 <h1> Aide </h1>
 
 
-
-<h3 class="dev"> Documentation d'aide </h3>
 <center>
     <div class="contact">
-
+        <h3 class="dev"> Documentation d'aide </h3>
         <div id="aide">
-            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"100Paris"), null, true)?>"> Aide-mémoire 100% PARIS </a>
-        </div>
-
-        <div id="aide">
-            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"sco"), null, true)?>"> Aide-mémoire SCO </a>
+            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument"), null, true)?>"> Documentation : Mode opératoire </a>
         </div>
         
-        <div id="aide">
-            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"upr"), null, true)?>"> Aide-mémoire UPR IDF </a>
+        <h3 class="dev"> FAQ </h3>
+        <div class="faq">
+            <b> Comment recharger mon solde ? </b><br>
+            <i> Vous pouvez cliquer sur votre solde, en haut à droite de cette page, pour acceder à la recharge.
+                Depuis cette page la transaction s'effectue en carte bleu et votre solde est credité immediatement. </i>
+            <br><br>
+            
+            <b> Où puis-je récuperer mon ticket ? </b><br>
+            <i> Les tickets sont disponible dans l'onglet "Accueil" dans la colonne du jour de la reservation et dans l'onglet "Mes repas" qui liste tous vos tickets. 
+                Les tickets sont imprimable et exportable au format PDF. </i>
+            <br><br>
+            
+            <b> Comment annuler une reservation ? </b><br>
+            <i> ... </i>
+            <br><br>
         </div>
         
-        <div id="aide">
-            <a href="<?php echo $this->url(array("controller"=>"footer","action"=>"getdocument","type"=>"annexe"), null, true)?>"> Annexe - Données sources </a>
-        </div>
-
     </div>
 </center>

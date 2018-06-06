@@ -3,39 +3,40 @@ $this->headScript()->prependFile($this->baseUrl() . '/scripts/repas/repas.js');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/repas.css');
 ?>
 
+<h1>Mes repas</h1>
+
 <section id="repas">
-        <?php //if($this->reclas != null) : ?>
         <table id="tableRepas">
+            
             <thead>
                 <tr>
                     <th> ID ticket </th>
-                    <th> Date </th>
+                    <th> Date de réservation</th>
                     <th> Montant </th>
-                    <th> Expiration </th>
+                    <th> Date d'expiration du ticket</th>
                 </tr>
             </thead>
+            
             <tbody>
-            <?php /*foreach($this->reclas as $recla):
-                $imb = str_replace("/","_",$recla['imb']);
-                ?>
-
+            <?php if($this->reservation != null) : ?>
+                <?php foreach($this->reservation as $reservation): ?>
                 <tr>
                     <td>
-                        <a href="<?php echo $this->baseUrl()."/reclamation/reclacreator/imb/".$imb."/id/".$recla['id'];?>"><?php echo $recla["imb"]; ?></a>
+                        <a href="<?php echo $this->baseUrl()."/repas/gestionticket/ticket/".$reservation["ReservationId"];?>"><?php echo $reservation["ReservationId"]; ?></a>
                     </td>
-                    <td><span><?php echo $recla["dateLastActionUS"]; ?></span>
-                        <?php echo $recla["dateLastAction"]; ?>
-                    </td>
-                    <td>
-                        <?php echo $recla["lastActor"]; ?>
+                    <td><span><?php echo $reservation["ReservationDateUS"]; ?></span>
+                        <?php echo $reservation["ReservationDate"]; ?>
                     </td>
                     <td>
-                        <?php echo $recla["syndic"]; ?>
+                        <?php echo $reservation["ReservationMontant"]; ?>€
                     </td>
-
+                    <td><span><?php echo $reservation["ReservationDateRepasUS"]; ?></span>
+                        <?php echo $reservation["ReservationDateRepas"]; ?>
+                    </td>
                 </tr>
-            <?php endforeach;*/?>
+                <?php endforeach;?>
+            <?php endif;?>
             </tbody>
+            
         </table>
-    <?php //endif;?>
 </section>

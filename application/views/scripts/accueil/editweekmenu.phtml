@@ -1,0 +1,22 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/accueil/editmenu.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/editmenu.css');
+?>
+
+<h1>Modification du menu de la semaine</h1>
+
+<ul id="sortable1" class="connectedSortable">
+    <li class="ui-state-default">Item 1</li>
+    <li class="ui-state-default">Item 2</li>
+    <li class="ui-state-default">Item 3</li>
+    <li class="ui-state-default">Item 4</li>
+    <li class="ui-state-default">Item 5</li>
+</ul>
+ 
+<ul id="sortable2" class="connectedSortable">
+    <li class="ui-state-highlight">Item 1</li>
+    <li class="ui-state-highlight">Item 2</li>
+    <li class="ui-state-highlight">Item 3</li>
+    <li class="ui-state-highlight">Item 4</li>
+    <li class="ui-state-highlight">Item 5</li>
+</ul>

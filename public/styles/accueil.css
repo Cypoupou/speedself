@@ -17,11 +17,54 @@
 }
 
 .accueil th{
+    //width: 18%;
     width: 175px;
-    border: 1px solid black;
     font-size: 1.1em;
 }
 
-.accueil td{
+.day th{
     border: 1px solid black;
+}
+
+.accueil td{
+    //border: 1px solid black;
+}
+
+.entree td, .dessert td{
+    background-color: #e6f2ff;
+}
+.plat td{
+    background-color: white;
+}
+
+.entree th, .dessert th{
+    background-color: #b3d7ff;
+}
+.plat th{
+    background-color: #f4faff;
+}
+
+.previous, .next {
+    float:left;
+    width: 50%;
+}
+.fleche img{
+    width: 100px;
+    height: 100px;
+}
+.fleche span {
+    display:none;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    color:black;
+    background:white;
+    font-size: 15px;
+}
+.fleche:hover span {
+    display:inline-block;
+    position:absolute;
+    border:1px solid black;
+    overflow:hidden;
+    margin-left: 10px;
 }

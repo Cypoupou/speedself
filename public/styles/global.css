@@ -213,6 +213,7 @@ span#titre-enteteCtb{
 	font-family: "OrangeFont", Helvetica, Times New Roman;
 	color: #000000;
 	font-size : 2.7em;
+	//padding : 0.8em;
 	width : 45%;
 	display:inline;
 	float:left;
@@ -374,15 +375,15 @@ div#decoration-nav{
     width: 30% ;
 }
 
-.contact{
-    display: table;
-    vertical-align: middle;
-}
-#contact {
-    display: table-cell;
-    padding-top: 40px;
-    padding-left: 200px;
+#contactmail {
     width: 40%;
+    float: left;
+    text-align: right;
+}
+#contacttelephone {
+    width: 40%;
+    float: right;
+    text-align: left;
 }
 
 footer{
@@ -402,7 +403,7 @@ footer{
 	justify-content: center;
 }
 .footer a:hover{
-    /*text-decoration : underline;*/
+    //text-decoration : underline;
 }
 
 .footer a:not(:first-child){
@@ -411,7 +412,7 @@ footer{
 
 .footer a {
     text-decoration: none;
-   /*padding:8px 50px;*/
+   // padding:8px 50px;
     font-family: "OrangeFont", Helvetica, Times New Roman;
     color: #00ccff;
     font-weight : bold;

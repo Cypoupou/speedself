@@ -19,8 +19,7 @@ class Application_Model_DbTable_Stock extends Zend_Db_Table_Abstract {
      * @Return a row
      */
     public function fetchOne($idStock){
-    
-
+        
         $select = $this->select();
         $select->where($this->_primary[1].' = ?', $idStock);
         $row = $this->fetchRow($select);
@@ -82,7 +81,7 @@ class Application_Model_DbTable_Stock extends Zend_Db_Table_Abstract {
                 $this->_stockName   => $stockName ,
                 $this->_stockNumber => $stockNumber ,
                 $this->_stockPrice  => $stockPrice ,
-                $this->_stockType  => $stockType ,
+                $this->_stockType   => $stockType ,
             ));
             return "ok";
     
@@ -104,14 +103,93 @@ class Application_Model_DbTable_Stock extends Zend_Db_Table_Abstract {
             $returned_arr = array();
             foreach($res as $row) {
                 $returned_arr[] = array(
-                    'id'  => $row->StockId,
-                    'StockName' => $row->StockName,
-                    'StockNumber'  => $row->StockNumber,
-                    'StockPrice' => $row->StockPrice,
-                    'StockType' => $row->StockType,
+                    'id'            => $row->StockId,
+                    'StockName'     => $row->StockName,
+                    'StockNumber'   => $row->StockNumber,
+                    'StockPrice'    => $row->StockPrice,
+                    'StockType'     => $row->StockType,
                 );
             }
             return $returned_arr;
+        }
+    }
+    
+    public function getStockById($id){
+        $select = $this->select();
+        $select->setIntegrityCheck(false);
+        
+        $select->where('StockId = ?', $id);
+        $res = $this->fetchAll($select);
+        
+        
+        if($res == null || $res->count() == 0)
+            return null;
+        else
+        {
+            $returned_arr = array();
+            foreach($res as $row)
+            {
+                $returned_arr[] = array(
+                    'id'            => $row->StockId,
+                    'StockName'     => $row->StockName,
+                    'StockPrice'    => $row->StockPrice,
+                    'StockType'     => $row->StockType,
+                    'StockNumber'   => $row->StockNumber,
+                );
+            }
+            return $returned_arr;
+        }
+    }
+    
+    public function getStockByType($type){
+        $select = $this->select();
+        $select->order('StockName');
+        $select->setIntegrityCheck(false);
+        
+        $select->where('StockType = ?', $type);
+        $select->where('StockNumber > 0');
+        $res = $this->fetchAll($select);
+        
+        
+        if($res == null || $res->count() == 0)
+            return null;
+        else
+        {
+            $returned_arr = array();
+            foreach($res as $row)
+            {
+                $returned_arr[] = array(
+                    'StockId'       => $row->StockId,
+                    'StockName'     => $row->StockName,
+                    'StockPrice'    => $row->StockPrice,
+                    'StockType'     => $row->StockType,
+                );
+            }
+            return $returned_arr;
+        }
+    }
+    
+    public function updateStockNumber($stockId, $stockNumber){
+        try{
+            $update = $this->update(array(
+                $this->_stockNumber => $stockNumber ,
+            ), array(
+                $this->_primary[1].'= ?' => $stockId ));
+            return "ok";
+        }catch (Zend_Exception $e){
+            return $e->getMessage();
+        }
+    }
+    
+    public function razStock($stockId) {
+        try{
+            $update = $this->update(array(
+                $this->_stockNumber => 0 ,
+            ), array(
+                $this->_primary[1].'= ?' => $stockId ));
+            return "ok";
+        }catch (Zend_Exception $e){
+            return $e->getMessage();
         }
     }
     

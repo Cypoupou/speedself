@@ -8,7 +8,7 @@ $auth = Zend_Auth::getInstance();
 
 <table class="accueil">
     <thead>
-        <tr>
+        <tr class="day">
             <th></th>
             <?php $i=1;
             foreach ($this->date as $date) {
@@ -22,15 +22,13 @@ $auth = Zend_Auth::getInstance();
         $spanE = count($this->entree);
         $nbEntree=1;
         foreach ($this->entree as $entree) {
+            echo '<tr class="entree">';
             if($nbEntree==1){
-                echo '<tr>';
                 echo '<th rowspan="'.$spanE.'">Entrée</th>';
-            }else{
-                echo '<tr>';
             }
             for($jour=1 ; $jour<=5 ; $jour++){
                 if(!isset($entree[$jour])){
-                    echo '<td>-</td>';
+                    echo '<td></td>';
                 }else{ 
                     echo '<td>'.$entree[$jour].'</td>';
                 }
@@ -44,15 +42,13 @@ $auth = Zend_Auth::getInstance();
         $spanP = count($this->plat);
         $nbPlat=1;
         foreach ($this->plat as $plat) {
+            echo '<tr class="plat">';
             if($nbPlat==1){
-                echo '<tr>';
                 echo '<th rowspan="'.$spanP.'">Plat</th>';
-            }else{
-                echo '<tr>';
             }
             for($jour=1 ; $jour<=5 ; $jour++){
                 if(!isset($plat[$jour])){
-                    echo '<td>-</td>';
+                    echo '<td></td>';
                 }else{ 
                     echo '<td>'.$plat[$jour].'</td>';
                 }
@@ -66,15 +62,13 @@ $auth = Zend_Auth::getInstance();
         $spanD = count($this->dessert);
         $nbDessert=1;
         foreach ($this->dessert as $dessert) {
+            echo '<tr class="dessert">';
             if($nbDessert==1){
-                echo '<tr>';
                 echo '<th rowspan="'.$spanD.'">Dessert</th>';
-            }else{
-                echo '<tr>';
             }
             for($jour=1 ; $jour<=5 ; $jour++){
                 if(!isset($dessert[$jour])){
-                    echo '<td>-</td>';
+                    echo '<td></td>';
                 }else{ 
                     echo '<td>'.$dessert[$jour].'</td>';
                 }
@@ -87,35 +81,57 @@ $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
             $access = $auth->getIdentity()->IdAccessF;
             if($access == 1){ ?>
-        <tr>
-            <td rowspan="2"></td>
-            <?php for($i=1;$i<=5;$i++){
-            echo '<td><button id="'.$i.'" class="modifier">Modifier</button></td>';
-            } ?>
-        </tr>
-        <tr>
-            <td colspan="5">
-                <form id='editWeekForm' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'editweek'), null, true);?>'>
-                    <input class='hidden' type='text' name='week' value=''>
-                    <button class="modifierTout">Modifier le menu de la semaine</button>
-                </form>
-            </td>
-        </tr>
-        <?php }else{ ?>
-        <tr>
-            <td></td>
-            <?php $i=1;
-            foreach ($this->date as $date) { ?>
-            <td>
-                <form id='reservation' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'reserver'), null, true);?>'>
-                    <input class='hidden' type='text' name='date' value='<?php echo $date; ?>'>
-                    <button class='reserver'>Reserver</button>
-                </form>
-            </td>
-            <?php $i++;
-            } ?>
-        </tr>
-        <?php }
+            <tr>
+                <td rowspan="2"></td>
+                <?php for($i=1;$i<=5;$i++){ ?>
+                <td>
+                    <?php if($this->date[$i-1] > '20/03/2018' /*date('d/m/Y')*/){ ?>
+                    <form id='editDayForm' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'editdaymenu'), null, true);?>'>
+                        <button class="custom saveButton">Modifier</button>
+                        <input class="hidden" type="text" name="date" value="<?php echo $this->date[$i-1] ?>">
+                        <input class="hidden" type="text" name="day" value="<?php echo $i ?>">
+                    </form>
+                    <?php } ?>
+                </td>
+                <?php } ?>
+            </tr>
+            <?php }else{ ?>
+            <tr>
+                <td></td>
+                <?php for($i=1;$i<=5;$i++){ ?>
+                <td>
+                    <?php if($this->reservation[$i] == 0){ 
+                        if($this->date[$i-1] > '20/03/2018' /*date('d/m/Y')*/){?>
+                    <form id='reservationForm' method='post' action='<?php echo $this->url(array('controller' => 'accueil','action' => 'reservation'), null, true);?>'>
+                        <input class='hidden' type='text' name='date' value='<?php echo $this->date[$i-1]; ?>'>
+                        <input class='hidden' type='text' name='day' value='<?php echo $i; ?>'>
+                        <button class='custom saveButton'>Reserver</button>
+                    </form>
+                    <?php } }else { ?>
+                    
+                    <a href="<?php echo $this->baseUrl()."/repas/gestionticket/ticket/".$this->reservation[$i][$this->date[$i-1]];?>"> <button class='enveloppe saveButton'>Ticket</button> </a>
+                    <?php } ?>
+                </td>
+                <?php } ?>
+            </tr>
+            <?php }
         } ?>
         </tbody>
 </table>
+
+<div class="fleche previous">
+    <center>
+        <a href="<?php echo $this->url(array("controller"=>"accueil","action"=>"index"), null, true)?>">
+            <img src="<?php echo $this->baseUrl()."/images/icon/previous.png";?>" />
+            <span><h3>Semaine précédente</h3></span>
+        </a>
+    </center>
+</div>
+<div class="fleche next">
+    <center>
+        <a href="<?php echo $this->url(array("controller"=>"accueil","action"=>"index"), null, true)?>">
+            <img src="<?php echo $this->baseUrl()."/images/icon/next.png";?>" />
+            <span><h3>Semaine suivante</h3></span>
+        </a>
+    </center>
+</div>

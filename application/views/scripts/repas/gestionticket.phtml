@@ -1,0 +1,143 @@
+<?php
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/repas/repas.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/styles/ticket.css');
+$reservation = $this->reservation[0];
+?>
+
+<h1>Gestion ticket</h1>
+
+
+<div class="ticket download">
+    <center>
+        <a href="<?php echo $this->url(array("controller"=>"repas","action"=>"download","ticket"=>$reservation['ReservationId']), null, true)?>">
+            <img src="<?php echo $this->baseUrl()."/images/icon/downloadimg.png";?>" />
+            <span><h3>Télécharger le ticket au format PNG</h3></span>
+        </a>
+    </center>
+</div>
+
+<div class="repas">
+    <table id="repasTab">
+        <tr>
+            <th COLSPAN=8></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th COLSPAN=6><center>SpeedSelf</center></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th COLSPAN=8></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Ticket numero :</th>
+            <td COLSPAN=4><?php echo $reservation['ReservationId']; ?></td>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Date :</th>
+            <td COLSPAN=4><?php echo $reservation['ReservationDateRepas']; ?></td>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Bénéficiaire :</th>
+            <td COLSPAN=4><?php echo $this->user; ?></td>
+            <th></th>
+        </tr>
+        <tr>
+            <th COLSPAN=8></th>
+        </tr>
+        <tr>
+            <th COLSPAN=3></th>
+            <th COLSPAN=2>Nom</th>
+            <th COLSPAN=2>Prix</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Entrée</th>
+            <th COLSPAN=5></th>
+        </tr>
+        <?php if(!isset($this->menu['Entrée'])){ ?>
+            <tr>
+                <th COLSPAN=3></th>
+                <td COLSPAN=2>--</td>
+                <td COLSPAN=2>--</td>
+            </tr>
+        <?php }else{
+            foreach ($this->menu['Entrée'] as $key => $value) { ?>
+                <tr>
+                    <th COLSPAN=3></th>
+                    <td COLSPAN=2><?php echo $value['StockName'] ?></td>
+                    <td COLSPAN=2><?php echo $value['StockPrice'] ?></td>
+                </tr>
+            <?php }
+        } ?>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Plat</th>
+            <th COLSPAN=5></th>
+        </tr>
+        <?php if(!isset($this->menu['Plat'])){ ?>
+            <tr>
+                <th COLSPAN=3></th>
+                <td COLSPAN=2>--</td>
+                <td COLSPAN=2>--</td>
+            </tr>
+        <?php }else{
+            foreach ($this->menu['Plat'] as $key => $value) { ?>
+                <tr>
+                    <th COLSPAN=3></th>
+                    <td COLSPAN=2><?php echo $value['StockName'] ?></td>
+                    <td COLSPAN=2><?php echo $value['StockPrice'] ?></td>
+                </tr>
+            <?php }
+        } ?>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Dessert</th>
+            <th COLSPAN=5></th>
+        </tr>
+        <?php if(!isset($this->menu['Dessert'])){ ?>
+            <tr>
+                <th COLSPAN=3></th>
+                <td COLSPAN=2>--</td>
+                <td COLSPAN=2>--</td>
+            </tr>
+        <?php }else{
+            foreach ($this->menu['Dessert'] as $key => $value) { ?>
+                <tr>
+                    <th COLSPAN=3></th>
+                    <td COLSPAN=2><?php echo $value['StockName'] ?></td>
+                    <td COLSPAN=2><?php echo $value['StockPrice'] ?></td>
+                </tr>
+            <?php }
+        } ?>
+        <tr>
+            <th></th>
+            <th COLSPAN=2>Total</th>
+            <th COLSPAN=2></th>
+            <td COLSPAN=2><?php echo $reservation['ReservationMontant']; ?> €</td>
+            <th></th>
+        </tr>
+        <tr>
+            <th COLSPAN=8>
+                <center>
+                    <img src="<?php echo $this->baseUrl().'/QRCodeGeneration.php?ticket='.$reservation['ReservationId']; ?>"/>
+                </center>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<div class="ticket send">
+    <center>
+        <a href="<?php echo $this->url(array("controller"=>"repas","action"=>"send","ticket"=>$reservation['ReservationId']), null, true)?>">
+            <img src="<?php echo $this->baseUrl()."/images/icon/email.png";?>" />
+            <span><h3>Recevoir le ticket par mail</h3></span>
+        </a>
+    </center>
+</div>

@@ -22,17 +22,40 @@ class Application_Model_Mailer
      */
     public function sendCreateAccountNotification($email, $codeAlliance, $password){
         $this->addContact('to', $email);
-        $this->addContact('from', 'noreply.tracfibre@orange.com', 'TRAC Fibre Application');
+        $this->addContact('from', 'noreply.speedself@gmail.com', 'Speed Self Application');
         $this->mail->setSubject('Création du compte');
         
         //create the view to render the html file
         $view = new Zend_View();
         //to change the directory (scripts is the default directory)
-        $view->setScriptPath(APPLICATION_PATH."/views/notification_templates/");
+        $view->setScriptPath(APPLICATION_PATH."/views/email_templates/");
         //pass the variables to the view script
         $view->username = $codeAlliance;
         $view->password = $password;
         $this->mail->setBodyHtml($view->render('account_creation.phtml'),
+        'UTF-8',
+        Zend_Mime::ENCODING_QUOTEDPRINTABLE);
+
+        try{
+            $this->mail->send();
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+    
+    public function sendTicket($email, $date, $path, $filename){
+        $this->addContact('to', $email);
+        $this->addContact('from', 'noreply.speedself@gmail.com', 'Speed Self Application');
+        $this->addAttachmentToMail($path, $filename);
+        $this->mail->setSubject('Ticket du '.$date);
+        
+        //create the view to render the html file
+        $view = new Zend_View();
+        //to change the directory (scripts is the default directory)
+        $view->setScriptPath(APPLICATION_PATH."/views/email_templates/");
+        //pass the variables to the view script
+        $view->date = $date;
+        $this->mail->setBodyHtml($view->render('ticket.phtml'),
         'UTF-8',
         Zend_Mime::ENCODING_QUOTEDPRINTABLE);
 

@@ -1,7 +1,7 @@
 <?php
 
 class Application_Model_DbTable_Access extends Zend_Db_Table_Abstract {
-    protected $_name = 'Access';  // table name in the database
+    protected $_name = 'access';  // table name in the database
     protected $_primary = 'AccessId'; //primary key
     protected $_accessName = 'AccessName'; // Name of the access
     

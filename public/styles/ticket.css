@@ -1,0 +1,54 @@
+/* 
+    Created on : 3 mai 2018, 11:26:40
+    Author     : ddjk5031
+*/
+
+table{
+    border: solid 1px black;
+    box-shadow: 10px 5px 5px #404040;
+}
+
+th, td{
+    width: 50px;
+}
+
+td{
+    text-align: right;
+}
+th{
+    text-align: left;
+}
+
+.repas{
+    width: 50%;
+    float:left;
+    display:inline-block;
+}
+#repasTab{
+    margin: auto;
+}
+
+.download, .send {
+    float:left;
+    width: 25%;
+}
+.ticket img{
+    width: 100px;
+    height: 100px;
+}
+.ticket span {
+    display:none;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    color:black;
+    background:white;
+    font-size: 15px;
+}
+.ticket:hover span {
+    display:inline-block;
+    position:absolute;
+    border:1px solid black;
+    overflow:hidden;
+    margin-left: 10px;
+}

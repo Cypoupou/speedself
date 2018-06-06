@@ -41,3 +41,8 @@
     text-shadow: 2px 0px 1px #b30b06;	
     text-decoration: none;
 }
+
+.faq {
+    width: 70%;
+    margin-left: 15%;
+}

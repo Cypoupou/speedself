@@ -1,5 +1,5 @@
 <?php
-$this->headScript()->prependFile($this->baseUrl() . '/scripts/stock/gestionStock.js');
+$this->headScript()->prependFile($this->baseUrl() . '/scripts/repas/gestionStock.js');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionStock.css');
 ?>
 
@@ -16,6 +16,7 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionStock.css
 
 <div class ="contenu">
     <button type="button" id="displayPopUpCreateStock"> </button> Ajouter un Stock
+    <label id="raz">RàZ Stock</label><button type="button" id="RaZStock"> </button>
     <table id="tabStock">
         <thead>
         <tr>
@@ -35,27 +36,19 @@ $this->headLink()->appendStylesheet($this->baseUrl() . '/styles/gestionStock.css
             <td><?php echo $stock['StockPrice'].' €'; ?></td>
             <td><?php echo $stock['StockType']; ?></td>
             <td id="center">
-                <form id='editStockForm' method='post' 
-                action='<?php echo $this->url(array('controller' => 'repas','action' => 'hydrateeditstockform'), null, true);?>'>
+                <form id='editStockForm' method='post' action='<?php echo $this->url(array('controller' => 'repas','action' => 'hydrateeditstockform'), null, true);?>'>
                     <input class='hidden' type='text' name='idStock' value='<?php echo $stock['id']; ?>'>
                     <button type="button" class='displayPopUpEditStock'></button>
                 </form>
             </td>
-            
-            
-            <?php //the used stock cannot be suppress
-            //if(Zend_Auth::getInstance()->getIdentity()->StockId != $stock['name']):
-            ?>
             <td id="center">
-                <form id='deleteStockForm' method='post'
-                action='<?php echo $this->url(array('controller' => 'repas','action' => 'deletestock'), null, true);?>'>
-                <input class='hidden' type='text' name='idStock' value='<?php echo $stock['id']; ?>'>
-                <button type="submit" class='deleteStock'></button>
+            <?php if($this->stockUsed[$stock['id']] == 0): //the used stock cannot be suppress ?>
+                <form id='deleteStockForm' method='post' action='<?php echo $this->url(array('controller' => 'repas','action' => 'deletestock'), null, true);?>'>
+                    <input class='hidden' type='text' name='idStock' value='<?php echo $stock['id']; ?>'>
+                    <button type="submit" class='deleteStock'></button>
                 </form>
+            <?php endif; ?>
             </td>
-            <?php
-            //endif;
-            ?>
             
         </tr>
         <?php } ?>

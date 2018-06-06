@@ -14,21 +14,21 @@
 
 #displayPopUpCreateUser
 {
-    background:url("../images/add_icon.png") no-repeat;	
+    background:url("../images/icon/add_small.png") no-repeat;
     border: 0px;
     height: 38px;
     width: 38px;
 }
 .displayPopUpEditUser
 {
-    background:url("../images/icon_edit.png") no-repeat;	
+    background:url("../images/icon/edit_small.png") no-repeat;		
     border: 0px;
     height: 38px;
     width: 38px;
 }
 .deleteUser
 {
-    background:url("../images/delete_icon.png") no-repeat;	
+    background:url("../images/icon/delete_small.png") no-repeat;
     border: 0px;
     height: 38px;
     width: 38px;
