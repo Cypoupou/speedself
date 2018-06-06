@@ -2,16 +2,54 @@
 //$this->headScript()->prependFile($this->baseUrl() . '/scripts/user/informations.js');
 ?>
 
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <h1> Gestion du solde </h1>
 
 <div id="info">
 
     <h1> Recharger mon compte </h1>
 
-    <p><b> Mon solde :</b> <?php echo $this->user['UserSolde']; ?> €</p>
-    
-    <button class="custom saveButton">Recharger</button>
-    
 
+    <p><b> Mon solde :</b> <?php echo $this->user['UserSolde']; ?> €</p>
+    <input id="number" type="text">
+
+
+    
+    <!--<button class="custom saveButton">Recharger</button>-->
+    
+    <div id="paypal-button"></div>
+
+  <script>
+  	  var value = Document.GetElementbyID
+      paypal.Button.render({
+      env: 'sandbox', // 'production' Or 'sandbox',
+
+      commit: true, // Show a 'Pay Now' button
+      locale: 'fr_FR',
+      style: {
+        color: 'blue', // gold blue silver black
+        size: 'small',
+        shape: 'pill' //pill rect
+      },
+
+      payment: function() {
+  	  	var value = document.getElementById('number').value;
+        return paypal.request.post('http://localhost/speedself/application/views/scripts/user/payment.php', {value: value}).then(function(data) {
+            return data.id;
+        });
+      },
+
+      onAuthorize: function(data, actions) {
+        return paypal.request.post('http://localhost/speedself/application/views/scripts/user/pay.php', {
+            paymentID: data.paymentID,
+            payerID:   data.payerID,
+        }).then(function(data) {
+            console.log(data)
+        }).catch(function (err) {
+            console.log('erreur', err)
+        });
+      }
+    }, '#paypal-button');
+  </script>
 </div>
 
